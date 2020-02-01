@@ -117,6 +117,9 @@ class AlienInvasion:
         if self.stats.game_active and len(self.bullets) < self.settings.bullet_allowed:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
+            # Add bullet shoot sound effect
+            pygame.mixer_music.load('sounds/shoot.mp3')
+            pygame.mixer_music.play()
 
     def _update_bullets(self):
         """Helper to update position of bullets and get rid of bullets shoot out-of-screen."""
@@ -140,6 +143,9 @@ class AlienInvasion:
                 self.stats.score += self.settings.alien_points * len(hit_aliens)
             self.score_board.prep_score()  # Update rendered image of the score
             self.score_board.check_high_score()  # Update the highest score if possible
+            # Add bullet alien collision sound effect
+            pygame.mixer_music.load('sounds/explosion.mp3')
+            pygame.mixer_music.play()
 
         if not self.aliens:
             self.start_new_level()

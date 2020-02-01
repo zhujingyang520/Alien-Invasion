@@ -57,6 +57,7 @@ class AlienInvasion:
         """Helper to respond to the key-presses and mouse events."""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                self.stats.store_highest_score()  # Store the highest score
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 self._check_keydown_events(event)
@@ -73,6 +74,7 @@ class AlienInvasion:
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True  # Start moving ship to the left
         elif event.key == pygame.K_q or event.key == pygame.K_ESCAPE:
+            self.stats.store_highest_score()  # Store the highest score
             sys.exit()  # Exit games using keypress `Q` or `ESC`
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()

@@ -11,5 +11,9 @@ appears that moves faster than the previous fleet. If any alien hits
 the player’s ship or reaches the bottom of the screen, the player
 loses a ship. If the player loses three ships, the game ends.
 
+## Sample GUI
+The sampled GUI for the Alien Invasion Games look like:
+![Sample GUI of Alien Invasion](images/Sample_GUI.png "Alien Invasion GUI")
+
 ## Reference
 It follows the project I of [Python Crash Course](https://ehmatthes.github.io/pcc_2e/).

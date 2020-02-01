@@ -2,6 +2,7 @@
 
 import pygame.font
 from pygame.sprite import Group
+
 from ship import Ship
 
 
@@ -20,17 +21,19 @@ class Scoreboard:
         self.text_color = (30, 30, 30)  # (R,G,B)
         self.text_font = pygame.font.SysFont(None, 48)  # Default system font and font size = 48
 
-        # Prepare the initial score and highest score images
+        # Prepare the overall scoreboard
         self.score_image, self.score_rect = None, None  # Placeholder
-        self.prep_score()
         self.highest_score_image, self.highest_score_rect = None, None  # Placeholder
-        self.prep_highest_score()
-        # Prepare the level info
         self.level_image, self.level_rect = None, None  # Placeholder
-        self.prep_level()
-        # Prepare the number of ships left info
         self.ships = None  # Placeholder
-        self.prep_ships_left()
+        self.prep_scoreboard()
+
+    def prep_scoreboard(self):
+        """Overall setup method to prepare the scoreboard."""
+        self.prep_score()  # Prepare the score surface
+        self.prep_highest_score()  # Prepare the highest score surface
+        self.prep_level()  # Prepare the level surface
+        self.prep_ships_left()  # Prepare the number of ships left surface
 
     def prep_score(self):
         """Turn the score into the rendered image."""

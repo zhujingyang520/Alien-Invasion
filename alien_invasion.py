@@ -107,9 +107,7 @@ class AlienInvasion:
         # Reset the game settings to restore the initial game level
         self.settings.initialize_dynamic_settings()
         # Update the scoreboard after reset score statistics
-        self.score_board.prep_score()
-        self.score_board.prep_level()
-        self.score_board.prep_ships_left()
+        self.score_board.prep_scoreboard()
 
         # Hide the mouse cursor after game starts
         pygame.mouse.set_visible(False)
@@ -144,14 +142,18 @@ class AlienInvasion:
             self.score_board.check_high_score()  # Update the highest score if possible
 
         if not self.aliens:
-            # Destroy existing bullets and create new fleet if we shoot all aliens in a fleet
-            self.bullets.empty()
-            self._create_fleet()
-            # Level-up the difficulty of games
-            self.settings.increase_speed()
-            # Update the level info on the scoreboard
-            self.stats.level += 1
-            self.score_board.prep_level()
+            self.start_new_level()
+
+    def start_new_level(self):
+        """Helper to start a new level of game round."""
+        # Destroy existing bullets and create new fleet if we shoot all aliens in a fleet
+        self.bullets.empty()
+        self._create_fleet()
+        # Level-up the difficulty of games
+        self.settings.increase_speed()
+        # Update the level info on the scoreboard
+        self.stats.level += 1
+        self.score_board.prep_level()
 
     def _update_aliens(self):
         """Helper to update the position of all aliens in the fleet."""
